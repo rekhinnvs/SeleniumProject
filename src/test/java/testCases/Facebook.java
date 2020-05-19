@@ -29,17 +29,38 @@ public class Facebook {
     }
     @Test(enabled = false)
     public void loginToFacebook() {
-        //xpath syntax //tagname[@attribute='value']
+        /**  xpath syntax
+            //tagname[@attribute='value']
+         **/
         driver.findElement(By.id("email")).sendKeys("dracoz");
         driver.findElement(By.id("pass")).sendKeys("kukkoos");
         driver.findElement(By.xpath("//input[@value='Log In']")).click();
     }
 
-    @Test
+    @Test(enabled = false)
     public void loginByCss() {
+        /** CSS syntax are
+            tagname[Attribute=value]
+            tagname#id
+            tagname.classname
+            #id
+         **/
         driver.findElement(By.cssSelector("input[name='email']")).sendKeys("hellow");
         driver.findElement(By.cssSelector("input[id='pass']")).sendKeys("hereIam");
         driver.findElement(By.cssSelector("input[value='Log In']")).click();
     }
 
+    @Test
+    public void loginByRegularExpression() {
+        /**
+         * Regular expression for xpath and css selector are
+         * xpath //
+         * tagname[contains(@attribute,'value')]
+         * CSS tagname[attribute*=value]
+         */
+
+        driver.findElement(By.xpath("//input[contains(@name,'emai')]")).sendKeys("userName");
+        driver.findElement(By.cssSelector("input[type*='pass']")).sendKeys("Password");
+
+    }
 }
