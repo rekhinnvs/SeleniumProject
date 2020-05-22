@@ -24,6 +24,8 @@ public class QaClickAcademy {
         //finding the object by its siblings.
         driver.findElement(By.xpath("//li[@class='active']/following-sibling::li[1]"));
         //Finding the object by its parent.
-        driver.findElement(By.xpath("//li[@class='active']/parent::li"));
+        driver.findElement(By.xpath("//li[@class='active']/parent::ul"));
+        //Finding the object by its text.
+        driver.findElement(By.xpath("//*[text()='Interview Guide']")).click();
     }
 }

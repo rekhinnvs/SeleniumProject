@@ -38,12 +38,20 @@
             <version>4.0.0-alpha-5</version>
         </dependency>
 
-
+        <!-- load webdriver without external jar files -->
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>4.0.0</version>
+        </dependency>
+
+        <!-- To avoid the SLF4J warning while starting appium server -->
+        <!-- https://mvnrepository.com/artifact/org.apache.cassandra/cassandra-all -->
+        <dependency>
+            <groupId>org.apache.cassandra</groupId>
+            <artifactId>cassandra-all</artifactId>
+            <version>4.0-alpha4</version>
         </dependency>
     </dependencies>
 

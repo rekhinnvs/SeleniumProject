@@ -43,6 +43,7 @@ public class Facebook {
             tagname[Attribute=value]
             tagname#id
             tagname.classname
+            .className#id
             #id
          **/
         driver.findElement(By.cssSelector("input[name='email']")).sendKeys("hellow");
