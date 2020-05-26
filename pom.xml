@@ -48,11 +48,11 @@
 
         <!-- To avoid the SLF4J warning while starting appium server -->
         <!-- https://mvnrepository.com/artifact/org.apache.cassandra/cassandra-all -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.cassandra</groupId>
             <artifactId>cassandra-all</artifactId>
             <version>4.0-alpha4</version>
-        </dependency>
+        </dependency> -->
     </dependencies>
 
 </project>
