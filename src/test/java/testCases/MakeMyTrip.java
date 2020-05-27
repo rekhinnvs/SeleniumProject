@@ -25,7 +25,7 @@ public class MakeMyTrip extends Base{
     @Test
     public void autoSuggestion() throws InterruptedException {
         driver.findElement(By.id("fromCity")).click();
-        waitFor(2);
+        implicitWaitFor(2);
         //Find the preceding sibling
         //WebElement sourceText =driver.findElement(By.xpath("//div[@id='react-autowhatever-1']/preceding-sibling::input"));
         WebElement source = driver.findElement(By.xpath("//input[@placeholder='From']"));

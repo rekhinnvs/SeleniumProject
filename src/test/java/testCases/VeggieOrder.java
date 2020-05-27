@@ -11,7 +11,7 @@ import utils.Base;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class VeggieOrder {
+public class VeggieOrder extends Base{
 
     static WebDriver driver;
 
@@ -19,7 +19,7 @@ public class VeggieOrder {
     public void  initDriver() throws InterruptedException {
         driver = Base.initializeDriver();
         driver.get("https://www.rahulshettyacademy.com/seleniumPractise/#/");
-        Thread.sleep(5000);
+        implicitWaitFor(5);
     }
 
     @Test(dataProvider="veggieNames", priority = 1)
@@ -30,7 +30,7 @@ public class VeggieOrder {
         for(int i=0; i<veggieNames.size();i++) {
             System.out.println(veggieNames.get(i).getText());
             if(veggieNames.get(i).getText().contains(vegitableName)) {
-                driver.findElements(By.xpath("//button[text()='ADD TO CART']")).get(i).click();
+                driver.findElements(By.xpath("//div[@class='product-action']/button")).get(i).click();
                 break;
             }
         }

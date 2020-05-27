@@ -19,7 +19,7 @@ public class Base {
         return driver;
     }
 
-    public void waitFor(int timeOut) {
+    public static void implicitWaitFor(int timeOut) {
         driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
     }
 
