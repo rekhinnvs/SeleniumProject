@@ -6,20 +6,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
 
 import java.sql.Driver;
 import java.time.Duration;
 
-public class Assignemens {
+public class Assignments {
 
     static WebDriver driver;
 
-    @Test
+    @BeforeClass
     public void initDriver() {
         driver = Base.initializeDriver();
-        driver.get("https://www.cleartrip.com/");
     }
 
     @Test(description = "Assignment 2",enabled = false)

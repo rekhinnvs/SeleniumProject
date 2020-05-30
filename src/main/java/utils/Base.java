@@ -13,9 +13,9 @@ public class Base {
 
     static WebDriver driver;
     public static WebDriver initializeDriver() {
-        //Since the latest chrome ver 83 is not yert available use the below code instead
-        WebDriverManager.chromedriver().useMirror().setup();
-        //WebDriverManager.chromedriver().setup();
+        //Since the latest chrome ver 83 is not yet available, use the below code instead
+        //WebDriverManager.chromedriver().useMirror().setup();
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
 
         return driver;
