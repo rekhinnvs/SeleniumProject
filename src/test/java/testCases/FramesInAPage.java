@@ -35,5 +35,8 @@ public class FramesInAPage extends Base {
 
         //Drag the source element to target element
         actions.dragAndDrop(source, target).build().perform();
+
+        //Switch back to main window from the frame.
+        driver.switchTo().defaultContent();
     }
 }

@@ -17,6 +17,7 @@ import java.util.function.Function;
 public class Assignments extends Base{
 
     static WebDriver driver;
+    WebDriverWait webDriverWait;
 
     @BeforeClass
     public void initDriver() {
@@ -48,7 +49,7 @@ public class Assignments extends Base{
     public void explicityWait() {
         driver.get("http://www.itgeared.com/demo/1506-ajax-loading.html");
         driver.findElement(By.xpath("//div[@id='content']/a[2]")).click();
-        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("results")));
         System.out.println(driver.findElement(By.id("results")));
     }
@@ -76,7 +77,7 @@ public class Assignments extends Base{
 
     }
 
-    @Test(description = "Handling multiple windows")
+    @Test(description = "Handling multiple windows", enabled = false)
     public void multipleWindows() {
         driver.get("https://the-internet.herokuapp.com/");
         driver.findElement(By.cssSelector("a[href='/windows']")).click();
@@ -95,4 +96,30 @@ public class Assignments extends Base{
         System.out.println(driver.findElement(By.cssSelector("div.example h3")).getText());
     }
 
+    @Test(description = "Frames", enabled = false)
+    public void nestedFrames() {
+        driver.get("https://the-internet.herokuapp.com/");
+        webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a[href='/nested_frames']")));
+        driver.findElement(By.cssSelector("a[href='/nested_frames']")).click();
+
+        WebElement topFrame = driver.findElement(By.name("frame-top"));
+        driver.switchTo().frame(topFrame);
+        System.out.println(driver.findElements(By.tagName("frame")).size());
+
+        WebElement middleFrame = driver.findElement(By.name("frame-middle"));
+        driver.switchTo().frame(middleFrame);
+        System.out.println(driver.findElement(By.id("content")).getText());
+        driver.switchTo().defaultContent();
+    }
+
+    @Test(description = "Find the number of links in a page")
+    public void findLinks() {
+        driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
+        System.out.println("Number of links present " + driver.findElements(By.tagName("a")).size());
+
+        WebElement footerSection = driver.findElement(By.id("gf-BIG"));
+        //Number of links present in the footer section.
+        System.out.println("Number of links present in the footer section "+ footerSection.findElements(By.tagName("a")).size());
+    }
 }
