@@ -8,18 +8,20 @@ import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
-
-import java.sql.Driver;
 import java.time.Duration;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
-public class Assignments {
+public class Assignments extends Base{
 
     static WebDriver driver;
 
     @BeforeClass
     public void initDriver() {
-        driver = Base.initializeDriver();
+        driver = initializeDriver();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     @Test(description = "Assignment 2",enabled = false)
@@ -51,7 +53,7 @@ public class Assignments {
         System.out.println(driver.findElement(By.id("results")));
     }
 
-    @Test(description = "Fluent wait")
+    @Test(description = "Fluent wait", enabled = false)
     public void fluentWait() {
         driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
         driver.findElement(By.cssSelector("[id='start'] button")).click();
@@ -72,6 +74,25 @@ public class Assignments {
             }
         });
 
+    }
+
+    @Test(description = "Handling multiple windows")
+    public void multipleWindows() {
+        driver.get("https://the-internet.herokuapp.com/");
+        driver.findElement(By.cssSelector("a[href='/windows']")).click();
+        driver.findElement(By.cssSelector("a[href='/windows/new']")).click();
+        Set<String> windowIDs = driver.getWindowHandles();
+        Iterator<String> iterator = windowIDs.iterator();
+        String parentID = iterator.next();
+        String childID = iterator.next();
+
+        //Switch to the child window.
+        driver.switchTo().window(childID);
+        System.out.println(driver.findElement(By.cssSelector("div.example h3")).getText());
+
+        //switch back to parent window
+        driver.switchTo().window(parentID);
+        System.out.println(driver.findElement(By.cssSelector("div.example h3")).getText());
     }
 
 }
