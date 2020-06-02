@@ -25,7 +25,7 @@ public class QaClickAcademy {
     public void initDriver() {
         driver = Base.initializeDriver();
         //driver.get("http://www.qaclickacademy.com/");
-        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     @Test(groups = "Sanity")
@@ -41,12 +41,10 @@ public class QaClickAcademy {
     @Test(groups = "Smoke")
     public void radioButton() {
         driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
-        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 
         driver.findElement(By.xpath("//*[@value='radio2']")).click();
         WebElement autoComplete = driver.findElement(By.id("autocomplete"));
         autoComplete.sendKeys("new");
-        driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
         autoComplete.sendKeys(Keys.ARROW_DOWN,Keys.ARROW_DOWN,Keys.ARROW_DOWN,Keys.ENTER);
 
         Select select = new Select(driver.findElement(By.id("dropdown-class-example")));

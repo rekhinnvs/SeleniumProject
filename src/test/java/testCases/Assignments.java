@@ -5,6 +5,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.*;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
@@ -113,7 +114,7 @@ public class Assignments extends Base{
         driver.switchTo().defaultContent();
     }
 
-    @Test(description = "Find the number of links in a page")
+    @Test(description = "Find the number of links in a page",enabled = false)
     public void findLinks() {
         driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
         System.out.println("Number of links present " + driver.findElements(By.tagName("a")).size());
@@ -121,5 +122,25 @@ public class Assignments extends Base{
         WebElement footerSection = driver.findElement(By.id("gf-BIG"));
         //Number of links present in the footer section.
         System.out.println("Number of links present in the footer section "+ footerSection.findElements(By.tagName("a")).size());
+    }
+
+    @Test
+    public void verifyAlert() {
+        driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
+
+        WebElement checkBoxOption2 = driver.findElement(By.id("checkBoxOption2"));
+        checkBoxOption2.click();
+        String option = checkBoxOption2.findElement(By.xpath("parent::label")).getText();
+        //String option = checkBoxOption2.getAttribute("value");
+        System.out.println(option);
+        Select select = new Select(driver.findElement(By.id("dropdown-class-example")));
+        select.selectByVisibleText(option);
+        driver.findElement(By.id("name")).sendKeys(option);
+        driver.findElement(By.id("alertbtn")).click();
+        String enteredText = driver.switchTo().alert().getText();
+        driver.switchTo().alert().accept();
+        Assert.assertTrue(enteredText.contains(option));
+        System.out.println("Entered text "+enteredText);
+
     }
 }
