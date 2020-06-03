@@ -29,6 +29,7 @@ public class CalendarPick extends Base {
         System.out.println(dates.size());
         System.out.println(dates.get(50).getAttribute("data-month"));
         for(int i=0; i<dates.size(); i++){
+            // Check the month before clicking on the date.
             if(dates.get(i).getAttribute("data-month").equals(Integer.toString(6))) {
                 //get the text and click on the date which is matching to 18
                 if(dates.get(i).getText().equals(Integer.toString(18)))

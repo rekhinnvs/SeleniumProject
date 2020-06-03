@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import utils.Base;
 import java.time.Duration;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
@@ -124,7 +125,7 @@ public class Assignments extends Base{
         System.out.println("Number of links present in the footer section "+ footerSection.findElements(By.tagName("a")).size());
     }
 
-    @Test
+    @Test(description = "Get the text from the alert dialog",enabled = false)
     public void verifyAlert() {
         driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
 
@@ -142,5 +143,20 @@ public class Assignments extends Base{
         Assert.assertTrue(enteredText.contains(option));
         System.out.println("Entered text "+enteredText);
 
+    }
+
+    @Test(description = "Find values from a table")
+    public void findTableValues() {
+        driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
+        WebElement table = driver.findElement(By.id("product"));
+        List<WebElement> numberOfRows = table.findElements(By.tagName("tr"));
+        System.out.println("Number of rows : " + numberOfRows.size());
+        System.out.println("Number of columns : "+numberOfRows.get(0).findElements(By.tagName("th")).size());
+        for(WebElement rows:numberOfRows) {
+            if(rows.findElement(By.cssSelector(":nth-child(2)")).getText().contains("Learn SQL")) {
+                System.out.println(rows.getText());
+                break;
+            }
+        }
     }
 }
