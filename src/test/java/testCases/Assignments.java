@@ -1,9 +1,7 @@
 package testCases;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.google.gson.internal.$Gson$Preconditions;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -145,7 +143,7 @@ public class Assignments extends Base{
 
     }
 
-    @Test(description = "Find values from a table")
+    @Test(description = "Find values from a table", enabled = false)
     public void findTableValues() {
         driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
         WebElement table = driver.findElement(By.id("product"));
@@ -158,5 +156,22 @@ public class Assignments extends Base{
                 break;
             }
         }
+    }
+
+    @Test(description = "JavaScript Executer")
+    public void findFromDropDown() {
+        driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
+        WebElement inputCountry = driver.findElement(By.id("autocomplete"));
+        inputCountry.sendKeys("Unit");
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+        String script = "return document.getElementById('autocomplete').value;";
+        String result;
+        int counter = 0;
+        do {
+            counter++;
+            inputCountry.sendKeys(Keys.ARROW_DOWN);
+            result = (String) javascriptExecutor.executeScript(script);
+        }while ((!result.startsWith("United States")) && counter<10);
+
     }
 }
