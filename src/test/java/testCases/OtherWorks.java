@@ -12,6 +12,9 @@ import utils.Base;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class OtherWorks extends Base {
@@ -77,7 +80,7 @@ public class OtherWorks extends Base {
         driver.manage().deleteCookieNamed("cookieName");
     }
 
-    @Test(description = "Take screenshots")
+    @Test(description = "Take screenshots", enabled = false)
     public void takeScreenShots() throws IOException {
         driver.get("https://www.bigbasket.com/");
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -85,5 +88,27 @@ public class OtherWorks extends Base {
         //Delete all the files in the directory before copying the new files.
         FileUtils.cleanDirectory(outPutDirectory);
         FileUtils.copyFile(file, new File("./output/screenShot.png"));
+    }
+
+    @Test(description = "Sort table columns")
+    public void sortTableColumns() {
+        driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
+        WebElement fruitHeader = driver.findElement(By.cssSelector("tr th:nth-child(2)"));
+        List<WebElement> fruitsElement = driver.findElements(By.cssSelector("tbody tr td:nth-child(2)"));
+        ArrayList<String> sortedFruits = new ArrayList<>();
+        for (WebElement fruit : fruitsElement) {
+            sortedFruits.add(fruit.getText());
+        }
+        Collections.sort(sortedFruits, Collections.reverseOrder());
+
+        fruitHeader.click();
+
+        ArrayList<String> descendingFruitsFromPage = new ArrayList<>();
+        for (WebElement fruit : fruitsElement) {
+            descendingFruitsFromPage.add(fruit.getText());
+        }
+        if (sortedFruits.equals(descendingFruitsFromPage))
+            System.out.println("Fruits are descending ordered");
+
     }
 }
