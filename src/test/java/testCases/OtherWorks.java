@@ -45,7 +45,6 @@ public class OtherWorks extends Base {
         //Select the number of adult passengers.
         Select selectAdult = new Select(driver.findElement(By.id("ctl00_mainContent_ddl_Adult")));
         selectAdult.selectByValue("4");
-
         //Select the number of child
         Select selectChild = new Select(driver.findElement(By.id("ctl00_mainContent_ddl_Child")));
         selectChild.selectByValue("3");
@@ -90,7 +89,7 @@ public class OtherWorks extends Base {
         FileUtils.copyFile(file, new File("./output/screenShot.png"));
     }
 
-    @Test(description = "Sort table columns")
+    @Test(description = "Sort table columns", enabled = true)
     public void sortTableColumns() {
         driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
         WebElement fruitHeader = driver.findElement(By.cssSelector("tr th:nth-child(2)"));
@@ -109,6 +108,7 @@ public class OtherWorks extends Base {
         }
         if (sortedFruits.equals(descendingFruitsFromPage))
             System.out.println("Fruits are descending ordered");
+
 
     }
 }
