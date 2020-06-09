@@ -6,5 +6,11 @@
     linktext
     CSS selector
     xpath
+  
     
  
+ Starting Selenium grid in hub mode
+ 
+ ``java -jar selenium-server-standalone-<version>.jar -role hub``
+ or
+ ``java -jar selenium-server-standalone-<version>.jar hub``

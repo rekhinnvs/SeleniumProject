@@ -16,17 +16,17 @@
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
-        <dependency>
+        <!--dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
             <version>4.0.0-alpha-2</version>
-        </dependency>
+        </dependency -->
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.0.0-alpha-5</version>
+            <version>4.0.0-alpha-6</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
@@ -42,8 +42,9 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
-            <version>4.0.0-alpha-5</version>
+            <version>4.0.0-alpha-6</version>
         </dependency>
+
 
         <!-- load webdriver without external jar files -->
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
