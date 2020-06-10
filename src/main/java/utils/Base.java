@@ -32,9 +32,13 @@ public class Base {
     }
 
     public static WebDriver initializeRemoteDriver() throws MalformedURLException {
+        WebDriverManager.chromedriver().setup();
+        /*GridLauncherV3.main(new String[] { "-role", "node", "-hub",
+                "http://localhost:4444", "-browser",
+               "browserName=chrome", "-port", "5555" });*/
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        //capabilities.setCapability("browserName","chrome");
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+        capabilities.setCapability("browserName", "chrome");
+        //capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
         //capabilities.setCapability(CapabilityType.BROWSER_VERSION,"83.0.4103.61");
         driver = new RemoteWebDriver(new URL("http://localhost:4444/"), capabilities);
         return driver;
