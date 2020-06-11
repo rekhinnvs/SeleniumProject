@@ -89,7 +89,7 @@ public class OtherWorks extends Base {
         FileUtils.copyFile(file, new File("./output/screenShot.png"));
     }
 
-    @Test(description = "Sort table columns", enabled = true)
+    @Test(description = "Sort table columns", enabled = false)
     public void sortTableColumns() {
         driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
         WebElement fruitHeader = driver.findElement(By.cssSelector("tr th:nth-child(2)"));
@@ -110,5 +110,10 @@ public class OtherWorks extends Base {
             System.out.println("Fruits are descending ordered");
 
 
+    }
+
+    @Test
+    public void getFromExcel() {
+        getDataFromExcel();
     }
 }
