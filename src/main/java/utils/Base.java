@@ -1,6 +1,8 @@
 package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
@@ -66,6 +68,12 @@ public class Base {
 
         }
         return sheet;
+    }
+
+    public static Logger getLogger(String className) {
+        //Logger logger = LogManager.getLogger("Base");
+        return LogManager.getLogger(className);
+        //logger.error("This is an error message.");
     }
 
 }

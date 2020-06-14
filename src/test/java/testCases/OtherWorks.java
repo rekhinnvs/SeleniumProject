@@ -1,6 +1,7 @@
 package testCases;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -21,8 +22,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+
 public class OtherWorks extends Base {
     static WebDriver driver;
+    static Logger logger;
 
     @BeforeClass
     public void initDriver() {
@@ -172,6 +175,15 @@ public class OtherWorks extends Base {
         driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).click();
         System.out.println(driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).isSelected());
         System.out.println(driver.findElements(By.cssSelector("input[type*='checkbox']")).size());
+    }
+
+    @Test
+    public void checkLogger() {
+        logger = getLogger(this.getClass().getName());
+        logger.info("This is an info log");
+        logger.debug("This is a debug log.");
+        logger.warn("This a warning log");
+        logger.fatal("This is a fatal error");
     }
 
 }
