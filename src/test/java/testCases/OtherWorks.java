@@ -183,6 +183,7 @@ public class OtherWorks extends Base {
         logger.info("This is an info log");
         logger.debug("This is a debug log.");
         logger.warn("This a warning log");
+        logger.error("This is an error log");
         logger.fatal("This is a fatal error");
     }
 

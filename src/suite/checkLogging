@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Check boxes">
+    <test name="Run checkbox">
+        <classes>
+            <class name="logging.LoggingFirst"></class>
+            <class name="logging.LoggingSecond"></class>
+        </classes>
+    </test>
+</suite>
