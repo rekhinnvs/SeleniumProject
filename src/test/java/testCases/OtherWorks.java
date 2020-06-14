@@ -1,6 +1,9 @@
 package testCases;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -14,6 +17,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -112,8 +116,62 @@ public class OtherWorks extends Base {
 
     }
 
-    @Test
-    public void getFromExcel() {
-        getDataFromExcel();
+    @Test(enabled = false)
+    public void getFromExcel() throws IOException {
+        XSSFSheet sheet = getDataFromExcel();
+        //This will throw exception if there is only one sheet in the workbook.
+        Iterator<Row> rowIterator = sheet.iterator();
+        Row firstRow = rowIterator.next();
+        Iterator<Cell> cell = firstRow.cellIterator();
+        System.out.print(cell.next().toString());
     }
+
+    @Test(enabled = false)
+    public void redBusInputSearchField() throws InterruptedException {
+        driver.get("https://www.redbus.in/");
+        driver.findElement(By.id("src")).sendKeys("BENG");
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//input[@id='src']")).sendKeys(Keys.DOWN);
+        //Since the text box values are hidden, use JavaScriptExecutor to get the value from the text box.
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+        String script = "return document.getElementById('src').value;";
+        String src = (String) javascriptExecutor.executeScript(script);
+        System.out.println(src);
+    }
+
+    @Test(enabled = false)
+    public void msnEnterSearchFlight() {
+        driver.get("https://flights.msn.com/en-gb/flight-search");
+        //Click on Flight Search link in the header
+        //driver.findElement(By.linkText("Flight Search")).click();
+        //Give Delhi in From TextBox
+        WebElement continueSite = driver.findElement(By.xpath("//button[contains(@title,'Continue to site')]"));
+        if (continueSite.isDisplayed()) {
+            continueSite.click();
+        }
+        WebElement sourceField = driver.findElement(By.xpath("//a[contains(@class,'populated')]"));
+        //Thread.sleep(3000);
+        System.out.println(sourceField.getText());
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        //wait.until(ExpectedConditions.visibilityOf(fromPlace));
+        //wait.until(ExpectedConditions.elementToBeClickable(fromPlace));
+        sourceField.click();
+        //WebElement fromPlace = driver.findElement(By.cssSelector(".place-selector__cover.text-ellipsis.js-autocomplete-place-cover.populated"));
+        //fromPlace.sendKeys("hello");
+        WebElement FromPlace = driver.findElement(By.xpath("//input[contains(@placeholder,'Origin city')]"));
+        //FromPlace.clear();
+        FromPlace.sendKeys("Delhi");
+    }
+
+    @Test(enabled = false)
+    public void spiceJet() throws InterruptedException {
+        driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
+        //Thread.sleep(2000);
+        //Check Box Concepts :
+        System.out.println(driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).isSelected());
+        driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).click();
+        System.out.println(driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).isSelected());
+        System.out.println(driver.findElements(By.cssSelector("input[type*='checkbox']")).size());
+    }
+
 }

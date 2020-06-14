@@ -57,9 +57,10 @@ public class Base {
         //Create a workbook object
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
         XSSFSheet sheet = null;
+
         int numberOfSheets = workbook.getNumberOfSheets();
         for (int i = 0; i < numberOfSheets; i++) {
-            //get the sheet
+            //Traverse through every sheet and get the desired sheet.
             if (workbook.getSheetName(i).equalsIgnoreCase("users"))
                 sheet = workbook.getSheetAt(i);
 
