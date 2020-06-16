@@ -1,4 +1,5 @@
 .idea/
 SeleniumProject.iml
 target/
-output/
+output/**
+

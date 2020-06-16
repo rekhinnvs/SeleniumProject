@@ -1,10 +1,10 @@
 package testCases;
 
-import objectRepository.PageFacebookLogin;
-import objectRepository.PageFactoryRediffLogin;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.PageFacebookLogin;
+import pages.PageFactoryRediffLogin;
 import utils.Base;
 
 import java.io.FileInputStream;
@@ -40,6 +40,7 @@ public class PageFactory extends Base {
     @Test(description = "Using pageObject factory")
     public void rediffLogin() {
         String url = properties.getProperty("rediff");
+        System.out.println(url);
         driver.get(url);
         pageRediffLogin = new PageFactoryRediffLogin(driver);
         pageRediffLogin.getLoginButton().click();
