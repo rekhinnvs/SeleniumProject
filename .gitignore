@@ -1,5 +1,7 @@
 .idea/
 SeleniumProject.iml
 target/
-output/**
+output/*
+
+!output/.gitkeep
 
