@@ -10,6 +10,7 @@ public class PageFacebookLogin {
     By password = By.id("pass");
     By loginButton = By.xpath("//input[@value='Log In']");
 
+
     public PageFacebookLogin(WebDriver driver) {
         this.driver = driver;
     }
