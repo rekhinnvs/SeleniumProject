@@ -9,6 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
@@ -31,6 +32,11 @@ public class OtherWorks extends Base {
     public void initDriver() {
         driver = initializeDriver();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    }
+
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
     }
 
     @Test(enabled = false)
@@ -96,7 +102,7 @@ public class OtherWorks extends Base {
         FileUtils.copyFile(file, new File("./output/screenShot.png"));
     }
 
-    @Test(description = "Sort table columns", enabled = false)
+    @Test(description = "Sort table columns", enabled = true)
     public void sortTableColumns() {
         driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
         WebElement fruitHeader = driver.findElement(By.cssSelector("tr th:nth-child(2)"));
@@ -177,7 +183,7 @@ public class OtherWorks extends Base {
         System.out.println(driver.findElements(By.cssSelector("input[type*='checkbox']")).size());
     }
 
-    @Test
+    @Test(enabled = false)
     public void checkLogger() {
         logger = getLogger(this.getClass().getName());
         logger.info("This is an info log");
