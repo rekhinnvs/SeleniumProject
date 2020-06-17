@@ -1,6 +1,7 @@
 package testCases;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.PageFacebookLogin;
@@ -19,7 +20,7 @@ public class PageFactory extends Base {
     Properties properties;
 
     @BeforeClass
-    public void initDriver() throws IOException {
+    public void setup() throws IOException {
         driver = initializeDriver();
         implicitWaitFor(3);
         properties = new Properties();
@@ -27,9 +28,15 @@ public class PageFactory extends Base {
         properties.load(fis);
     }
 
-    @Test(description = "Using page objet", enabled = false)
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
+    }
+
+    @Test(description = "Using page object", enabled = false)
     public void facebookLogin() {
-        driver.get("https://facebook.com");
+        String url = properties.getProperty("facebook");
+        driver.get(url);
         //Create an object for the pagefactory page for facebook login
         pageFacebookLogin = new PageFacebookLogin(driver);
         pageFacebookLogin.userName().sendKeys("dracos");

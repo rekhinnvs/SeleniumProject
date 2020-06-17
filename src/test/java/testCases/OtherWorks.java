@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 public class OtherWorks extends Base {
@@ -29,9 +28,9 @@ public class OtherWorks extends Base {
     static Logger logger;
 
     @BeforeClass
-    public void initDriver() {
+    public void setup() {
         driver = initializeDriver();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        implicitWaitFor(3);
     }
 
     @AfterClass
@@ -39,7 +38,7 @@ public class OtherWorks extends Base {
         driver.quit();
     }
 
-    @Test(enabled = false)
+    @Test(description = "Change the currency and get the value.", enabled = true)
     public void spiceJetGetCurrency() {
         driver.get("https://www.spicejet.com/");
         Select currency = new Select(driver.findElement(By.id("ctl00_mainContent_DropDownListCurrency")));
@@ -47,7 +46,7 @@ public class OtherWorks extends Base {
         System.out.println(currency.getFirstSelectedOption().getText());
     }
 
-    @Test(enabled = false)
+    @Test(description = "select the passengers.", enabled = true)
     public void selectPassengers() {
         driver.get("https://www.spicejet.com/");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

@@ -21,13 +21,13 @@
 
     </Appenders>
     <Loggers>
-        <!-- print all the logs for the LoggingFirst class. -->
+        <!-- print the logs for the LoggingFirst class. -->
         <Logger name="logging.LoggingFirst" level="trace" additivity="false">
             <AppenderRef ref="File"/>
             <AppenderRef ref="Console"/>
         </Logger>
-        <!-- Print from error logs for other classes -->
-        <Root level="error">
+        <!-- Print from logs for other classes -->
+        <Root level="debug">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>
         </Root>
