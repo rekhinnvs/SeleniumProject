@@ -1,12 +1,12 @@
 package testCases;
 
-import com.google.gson.internal.$Gson$Preconditions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
+
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
@@ -158,7 +158,7 @@ public class Assignments extends Base{
         }
     }
 
-    @Test(description = "JavaScript Executer")
+    @Test(description = "JavaScript Executer", enabled = false)
     public void findFromDropDown() {
         driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
         WebElement inputCountry = driver.findElement(By.id("autocomplete"));
