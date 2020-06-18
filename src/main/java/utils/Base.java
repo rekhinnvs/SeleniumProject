@@ -83,7 +83,7 @@ public class Base {
         //logger.error("This is an error message.");
     }
 
-    public void htmlReporter() {
+    public ExtentReports htmlReporter() {
         String path = "./output/index.html";
         ExtentSparkReporter reporter = new ExtentSparkReporter(path);
         reporter.config().setDocumentTitle("Test results");
@@ -92,16 +92,9 @@ public class Base {
         extentReports = new ExtentReports();
         extentReports.attachReporter(reporter);
         //ExtentTest test = extentReports.createTest(reportName);
-
+        return extentReports;
     }
 
-    public void createTest(String reportName) {
-        extentReports.createTest(reportName);
-    }
-
-    public void flushHtmlReport() {
-        extentReports.flush();
-    }
 
     public void takeScreenShots(WebDriver driver, String testName) throws IOException {
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);

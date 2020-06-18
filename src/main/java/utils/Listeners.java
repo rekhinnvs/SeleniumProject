@@ -1,5 +1,7 @@
 package utils;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
@@ -12,18 +14,33 @@ public class Listeners extends Base implements ITestListener {
     Logger logger;
     Base base;
     WebDriver driver = null;
+    ExtentReports extent;
+    ExtentTest test;
+    ThreadLocal<ExtentTest> extentTest;
+
+    @Override
+    public void onStart(ITestContext context) {
+        //Create extend report object and initialize it.
+        base = new Base();
+        extent = base.htmlReporter();
+        // To enable thread safe so all the parallel run result will save in the same extend report file.
+        extentTest = new ThreadLocal<>();
+    }
 
     @Override
     public void onTestStart(ITestResult result) {
-        base = new Base();
+        test = extent.createTest(result.getName());
+        //To make it thread safe
+        extentTest.set(test);
         logger = getLogger(result.getTestClass().getName());
-        System.out.println("Class name " + result.getTestClass().getName());
         logger.debug("Test started");
+
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         logger.debug("Test case " + result.getName() + " passed");
+        extentTest.get().pass("Test case passed");
     }
 
     @Override
@@ -35,21 +52,21 @@ public class Listeners extends Base implements ITestListener {
         System.out.println(driver.getTitle());
         logger.info("Test case " + result.getName() + " failed");
         try {
-            System.out.println("From try block " + driver.getTitle());
-            System.out.println("From try block " + result.getName());
             base.takeScreenShots(driver, result.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        extentTest.get().fail(result.getThrowable());
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         logger.info("Test case " + result.getName() + " skipped");
+        extentTest.get().skip("Test case skipped");
     }
 
     @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-
+    public void onFinish(ITestContext context) {
+        extent.flush();
     }
 }

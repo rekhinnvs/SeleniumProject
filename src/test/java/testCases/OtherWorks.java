@@ -44,7 +44,7 @@ public class OtherWorks extends Base {
         //driver.quit();
     }
 
-    @Test(description = "Change the currency and get the value.", enabled = false)
+    @Test(description = "Change the currency and get the value.", enabled = true)
     public void spiceJetGetCurrency() {
         driver.get("https://www.spicejet.com/");
         Select currency = new Select(driver.findElement(By.id("ctl00_mainContent_DropDownListCurrency")));
@@ -52,7 +52,7 @@ public class OtherWorks extends Base {
         System.out.println(currency.getFirstSelectedOption().getText());
     }
 
-    @Test(description = "select the passengers.", enabled = false)
+    @Test(description = "select the passengers.", enabled = true)
     public void selectPassengers() {
         driver.get("https://www.spicejet.com/");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -107,7 +107,7 @@ public class OtherWorks extends Base {
         FileUtils.copyFile(file, new File("./output/screenShot.png"));
     }
 
-    @Test(description = "Sort table columns", enabled = false)
+    @Test(description = "Sort table columns", enabled = true)
     public void sortTableColumns() {
         //base.createTest("sort columns");
         driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
@@ -155,7 +155,7 @@ public class OtherWorks extends Base {
         System.out.println(src);
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void msnEnterSearchFlight() {
         driver.get("https://flights.msn.com/en-gb/flight-search");
         //Click on Flight Search link in the header
@@ -179,7 +179,7 @@ public class OtherWorks extends Base {
         FromPlace.sendKeys("Delhi");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void spiceJet() throws InterruptedException {
         driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
         //Thread.sleep(2000);
@@ -229,7 +229,7 @@ public class OtherWorks extends Base {
         System.out.println(driver.findElement(By.cssSelector("div#error")).getText());
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void spiceJetOriginCity() throws InterruptedException {
         driver.get("https://www.spicejet.com/");
         //WebElement originCity = driver.findElement(By.xpath("//input[@id='ctl00_mainContent_ddl_originStation1_CTXT']"));
