@@ -3,21 +3,21 @@ package testCases;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 import utils.Base;
 
 import java.util.concurrent.TimeUnit;
 
 
-public class Facebook {
+public class Facebook extends Base {
     static WebDriver driver;
 
     @BeforeTest
     public void initDriver() {
         System.out.println("Initializing driver");
-        driver = Base.initializeDriver();
+        driver = initializeDriver();
     }
+
     @Test
     public void launchChrome() {
 

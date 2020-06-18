@@ -1,6 +1,5 @@
 package testCases;
 
-import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -11,19 +10,16 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.concurrent.TimeUnit;
 
-public class QaClickAcademy {
+public class QaClickAcademy extends Base {
 
     WebDriver driver;
 
     @BeforeClass
     public void initDriver() {
-        driver = Base.initializeDriver();
+        driver = initializeDriver();
         //driver.get("http://www.qaclickacademy.com/");
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }

@@ -8,16 +8,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
 
-import java.sql.Driver;
 import java.util.concurrent.TimeUnit;
 
-public class RahulFlightBook {
+public class RahulFlightBook extends Base {
 
     static WebDriver driver;
 
     @BeforeClass
     public void initDriver() {
-        driver = Base.initializeDriver();
+        driver = initializeDriver();
         driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
     }
 

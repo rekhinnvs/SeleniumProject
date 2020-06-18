@@ -8,8 +8,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
 
-import java.security.Key;
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 public class MakeMyTrip extends Base{
@@ -18,14 +16,20 @@ public class MakeMyTrip extends Base{
 
     @BeforeClass
     public void initDriver() {
-        driver = Base.initializeDriver();
+        driver = initializeDriver();
         driver.get("https://www.makemytrip.com/");
     }
 
     @Test
     public void autoSuggestion() throws InterruptedException {
+        Thread.sleep(3000);
+        WebElement popup = driver.findElement(By.cssSelector(".autopop__wrap.makeFlex.column.defaultCursor"));
+        WebElement account = driver.findElement(By.xpath("//li[@data-cy='account']"));
+        if (popup.isDisplayed()) {
+            account.click();
+        }
         driver.findElement(By.id("fromCity")).click();
-        implicitWaitFor(2);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         //Find the preceding sibling
         //WebElement sourceText =driver.findElement(By.xpath("//div[@id='react-autowhatever-1']/preceding-sibling::input"));
         WebElement source = driver.findElement(By.xpath("//input[@placeholder='From']"));

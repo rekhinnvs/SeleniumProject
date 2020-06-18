@@ -3,9 +3,7 @@ package testCases;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -14,7 +12,6 @@ import utils.Base;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class VeggieOrder extends Base{
 
@@ -23,7 +20,7 @@ public class VeggieOrder extends Base{
 
     @BeforeClass
     public void  initDriver() throws InterruptedException {
-        driver = Base.initializeDriver();
+        driver = initializeDriver();
         driver.get("https://www.rahulshettyacademy.com/seleniumPractise/#/");
         implicitWaitFor(5);
         webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));

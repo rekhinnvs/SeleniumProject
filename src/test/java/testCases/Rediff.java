@@ -6,12 +6,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
 
-public class Rediff {
+public class Rediff extends Base {
     WebDriver driver;
 
     @BeforeClass
     public void intiDriver() {
-        driver = Base.initializeDriver();
+        driver = initializeDriver();
         driver.get("http://rediff.com");
     }
 

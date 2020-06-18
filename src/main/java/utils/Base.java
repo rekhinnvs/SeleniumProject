@@ -1,16 +1,22 @@
 package utils;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -19,15 +25,16 @@ import java.util.concurrent.TimeUnit;
 
 public class Base {
 
-    static WebDriver driver;
+    static ExtentReports extentReports;
+    WebDriver driver;
 
-    public static WebDriver initializeDriver() {
+    public WebDriver initializeDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         return driver;
     }
 
-    public static WebDriver initializeCustomDriver() {
+    public WebDriver initializeCustomDriver() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
         capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
@@ -37,7 +44,7 @@ public class Base {
         return driver;
     }
 
-    public static WebDriver initializeRemoteDriver() throws MalformedURLException {
+    public WebDriver initializeRemoteDriver() throws MalformedURLException {
         WebDriverManager.chromedriver().setup();
         /*GridLauncherV3.main(new String[] { "-role", "node", "-hub",
                  "http://localhost:4444", "-browser",
@@ -50,7 +57,7 @@ public class Base {
         return driver;
     }
 
-    public static void implicitWaitFor(int timeOut) {
+    public void implicitWaitFor(int timeOut) {
         driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
     }
 
@@ -76,5 +83,32 @@ public class Base {
         //logger.error("This is an error message.");
     }
 
+    public void htmlReporter() {
+        String path = "./output/index.html";
+        ExtentSparkReporter reporter = new ExtentSparkReporter(path);
+        reporter.config().setDocumentTitle("Test results");
+        reporter.config().setReportName("Rekhin");
+
+        extentReports = new ExtentReports();
+        extentReports.attachReporter(reporter);
+        //ExtentTest test = extentReports.createTest(reportName);
+
+    }
+
+    public void createTest(String reportName) {
+        extentReports.createTest(reportName);
+    }
+
+    public void flushHtmlReport() {
+        extentReports.flush();
+    }
+
+    public void takeScreenShots(WebDriver driver, String testName) throws IOException {
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File outPutDirectory = new File("./output");
+        //Delete all the files in the directory before copying the new files.
+        //FileUtils.cleanDirectory(outPutDirectory);
+        FileUtils.copyFile(file, new File("./output/" + testName + ".png"));
+    }
 
 }

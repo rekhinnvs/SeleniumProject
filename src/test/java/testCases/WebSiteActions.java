@@ -4,19 +4,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.openqa.selenium.interactions.Actions;
 import utils.Base;
 
-public class WebSiteActions {
+public class WebSiteActions extends Base {
 
     static WebDriver driver;
     static Actions actions;
 
     @BeforeClass
     public void initDriver() {
-        driver = Base.initializeDriver();
+        driver = initializeDriver();
         actions = new Actions(driver);
         driver.get("https://www.amazon.com/");
     }

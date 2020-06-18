@@ -8,7 +8,7 @@
     <test name="All test cases">
         <classes>
             <class name="testCases.OtherWorks"/>
-            <class name="testCases.PageFactory"/>
+            <!--<class name="testCases.PageFactory"/> -->
         </classes>
     </test>
 </suite>

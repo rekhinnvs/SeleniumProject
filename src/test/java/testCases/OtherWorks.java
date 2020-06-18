@@ -9,6 +9,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -24,21 +26,25 @@ import java.util.List;
 
 
 public class OtherWorks extends Base {
-    static WebDriver driver;
+    WebDriver driver;
     static Logger logger;
+    Base base;
 
     @BeforeClass
-    public void setup() {
+    public void setup(ITestContext context) {
         driver = initializeDriver();
         implicitWaitFor(3);
+        context.setAttribute("WebDriver", driver);
+
     }
 
     @AfterClass
     public void tearDown() {
-        driver.quit();
+        //base.flushHtmlReport();
+        //driver.quit();
     }
 
-    @Test(description = "Change the currency and get the value.", enabled = true)
+    @Test(description = "Change the currency and get the value.", enabled = false)
     public void spiceJetGetCurrency() {
         driver.get("https://www.spicejet.com/");
         Select currency = new Select(driver.findElement(By.id("ctl00_mainContent_DropDownListCurrency")));
@@ -46,7 +52,7 @@ public class OtherWorks extends Base {
         System.out.println(currency.getFirstSelectedOption().getText());
     }
 
-    @Test(description = "select the passengers.", enabled = true)
+    @Test(description = "select the passengers.", enabled = false)
     public void selectPassengers() {
         driver.get("https://www.spicejet.com/");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -101,8 +107,9 @@ public class OtherWorks extends Base {
         FileUtils.copyFile(file, new File("./output/screenShot.png"));
     }
 
-    @Test(description = "Sort table columns", enabled = true)
+    @Test(description = "Sort table columns", enabled = false)
     public void sortTableColumns() {
+        //base.createTest("sort columns");
         driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
         WebElement fruitHeader = driver.findElement(By.cssSelector("tr th:nth-child(2)"));
         List<WebElement> fruitsElement = driver.findElements(By.cssSelector("tbody tr td:nth-child(2)"));
@@ -136,6 +143,7 @@ public class OtherWorks extends Base {
 
     @Test(enabled = false)
     public void redBusInputSearchField() throws InterruptedException {
+        //base.createTest("redbus search.");
         driver.get("https://www.redbus.in/");
         driver.findElement(By.id("src")).sendKeys("BENG");
         Thread.sleep(2000);
@@ -190,6 +198,55 @@ public class OtherWorks extends Base {
         logger.warn("This a warning log");
         logger.error("This is an error log");
         logger.fatal("This is a fatal error");
+    }
+
+    @Test(enabled = false)
+    public void openFooterLinksInNewTab() {
+        driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
+        System.out.println(driver.findElements(By.tagName("a")).size());
+        WebElement footerdriver = driver.findElement(By.id("gf-BIG"));
+        System.out.println(footerdriver.findElements(By.tagName("a")).size());
+        WebElement colomoundriver = footerdriver.findElement(By.xpath("//table/tbody/tr/td[1]/ul"));
+        System.out.println(colomoundriver.findElements(By.tagName("a")).size());
+        //String clickonlinkTab = Keys.chord(Keys.COMMAND, Keys.ENTER);
+        for (int i = 1; i < colomoundriver.findElements(By.tagName("a")).size(); i++) {
+            String clickonlinkTab = Keys.chord(Keys.COMMAND, Keys.ENTER);
+            System.out.println(colomoundriver.findElements(By.tagName("a")).get(i).getText());
+            colomoundriver.findElements(By.tagName("a")).get(i).sendKeys(clickonlinkTab);
+        }
+
+    }
+
+    @Test(enabled = false)
+    public void salesForceLoginFailureCheck() throws InterruptedException {
+        driver.get("https://www.salesforce.com/ca/?ir=1");
+        driver.findElement(By.linkText("Login")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//input[@type='email']")).sendKeys("anything");
+        driver.findElement(By.xpath("//input[@name='pw']")).sendKeys("helpme");
+        driver.findElement(By.cssSelector("#Login")).click();
+        Thread.sleep(3000);
+        System.out.println(driver.findElement(By.cssSelector("div#error")).getText());
+    }
+
+    @Test(enabled = false)
+    public void spiceJetOriginCity() throws InterruptedException {
+        driver.get("https://www.spicejet.com/");
+        //WebElement originCity = driver.findElement(By.xpath("//input[@id='ctl00_mainContent_ddl_originStation1_CTXT']"));
+        WebElement originCity = driver.findElement(By.xpath("//*[@id='ctl00_mainContent_ddl_originStation1']"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(originCity));
+        originCity.click();
+
+        String clickOnNewTab = Keys.chord(Keys.CONTROL, Keys.ENTER);
+        WebElement opportunities = driver.findElement(By.xpath("//a[@title='Opportunities']"));
+        opportunities.sendKeys(clickOnNewTab);
+    }
+
+    @Test(enabled = true)
+    public void aFailCase() {
+        driver.get("http://google.com");
+        Assert.fail("This is a failed case");
     }
 
 }

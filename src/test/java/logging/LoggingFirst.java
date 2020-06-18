@@ -1,6 +1,7 @@
 package logging;
 
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.Base;
 
@@ -15,5 +16,10 @@ public class LoggingFirst extends Base {
         logger.warn("This is from first class warn");
         logger.error("This is from first class error");
         logger.fatal("This is from first class fatal");
+    }
+
+    @Test
+    public void twoFromFirstClass() {
+        Assert.fail("to check the failure");
     }
 }
