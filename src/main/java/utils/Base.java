@@ -78,30 +78,30 @@ public class Base {
     }
 
     public static Logger getLogger(String className) {
-        //Logger logger = LogManager.getLogger("Base");
         return LogManager.getLogger(className);
-        //logger.error("This is an error message.");
     }
 
     public ExtentReports htmlReporter() {
-        String path = "./output/index.html";
+        String path = "output/index.html";
         ExtentSparkReporter reporter = new ExtentSparkReporter(path);
         reporter.config().setDocumentTitle("Test results");
         reporter.config().setReportName("Rekhin");
 
         extentReports = new ExtentReports();
         extentReports.attachReporter(reporter);
-        //ExtentTest test = extentReports.createTest(reportName);
         return extentReports;
     }
 
 
-    public void takeScreenShots(WebDriver driver, String testName) throws IOException {
+    public File takeScreenShots(WebDriver driver, String testName) throws IOException {
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File outPutDirectory = new File("./output");
+        File outPutDirectory = new File("output");
         //Delete all the files in the directory before copying the new files.
         //FileUtils.cleanDirectory(outPutDirectory);
-        FileUtils.copyFile(file, new File("./output/" + testName + ".png"));
+        File screenShotFile = new File(outPutDirectory.toString() + "/" + testName + ".png");
+        FileUtils.copyFile(file, screenShotFile);
+        System.out.println("absolute path of the screenshot " + screenShotFile.getAbsolutePath());
+        return screenShotFile;
     }
 
 }

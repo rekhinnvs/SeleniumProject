@@ -1,9 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Otherworks and pagefactory">
+<suite name="Otherworks">
     <listeners>
         <listener class-name="utils.Listeners"/>
-        <listener class-name="utils.ExtendReporter"/>
-        <!--<listener class-name="utils.ExtentReporter"/> -->
     </listeners>
     <test name="All test cases">
         <classes>

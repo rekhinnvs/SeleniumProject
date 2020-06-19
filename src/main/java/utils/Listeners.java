@@ -8,6 +8,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Listeners extends Base implements ITestListener {
@@ -23,7 +24,7 @@ public class Listeners extends Base implements ITestListener {
         //Create extend report object and initialize it.
         base = new Base();
         extent = base.htmlReporter();
-        // To enable thread safe so all the parallel run result will save in the same extend report file.
+        // To enable thread safe, so all the parallel run result will save in the same extend report file.
         extentTest = new ThreadLocal<>();
     }
 
@@ -50,13 +51,16 @@ public class Listeners extends Base implements ITestListener {
         ITestContext context = result.getTestContext();
         driver = (WebDriver) context.getAttribute("WebDriver");
         System.out.println(driver.getTitle());
+        extentTest.get().fail(result.getThrowable());
         logger.info("Test case " + result.getName() + " failed");
         try {
-            base.takeScreenShots(driver, result.getName());
+            File screenshotPath = base.takeScreenShots(driver, result.getName());
+            System.out.println("screenshot path from try block " + screenshotPath.getAbsolutePath());
+            extentTest.get().addScreenCaptureFromPath(screenshotPath.getAbsolutePath(), result.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        extentTest.get().fail(result.getThrowable());
+
     }
 
     @Override

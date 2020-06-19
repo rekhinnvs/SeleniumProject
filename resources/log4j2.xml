@@ -27,7 +27,7 @@
             <AppenderRef ref="Console"/>
         </Logger>
         <!-- Print from logs for other classes -->
-        <Root level="debug">
+        <Root level="Error">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>
         </Root>

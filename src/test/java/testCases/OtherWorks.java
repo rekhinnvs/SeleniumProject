@@ -28,20 +28,18 @@ import java.util.List;
 public class OtherWorks extends Base {
     WebDriver driver;
     static Logger logger;
-    Base base;
 
     @BeforeClass
     public void setup(ITestContext context) {
         driver = initializeDriver();
         implicitWaitFor(3);
         context.setAttribute("WebDriver", driver);
-
     }
 
     @AfterClass
     public void tearDown() {
         //base.flushHtmlReport();
-        //driver.quit();
+        driver.quit();
     }
 
     @Test(description = "Change the currency and get the value.", enabled = true)
@@ -234,7 +232,7 @@ public class OtherWorks extends Base {
         driver.get("https://www.spicejet.com/");
         //WebElement originCity = driver.findElement(By.xpath("//input[@id='ctl00_mainContent_ddl_originStation1_CTXT']"));
         WebElement originCity = driver.findElement(By.xpath("//*[@id='ctl00_mainContent_ddl_originStation1']"));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(originCity));
         originCity.click();
 
