@@ -72,7 +72,7 @@ public class OtherWorks extends Base {
     }
 
     @Test(enabled = false)
-    public void bigBasketNewWindow() throws InterruptedException {
+    public void bigBasketNewWindow() {
         driver.get("https://www.bigbasket.com/");
         driver.manage().window().maximize();
         //Thread.sleep(30000);
@@ -177,10 +177,8 @@ public class OtherWorks extends Base {
     }
 
     @Test(enabled = true)
-    public void spiceJet() throws InterruptedException {
+    public void spiceJet() {
         driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
-        //Thread.sleep(2000);
-        //Check Box Concepts :
         System.out.println(driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).isSelected());
         driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).click();
         System.out.println(driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).isSelected());
@@ -227,7 +225,7 @@ public class OtherWorks extends Base {
     }
 
     @Test(enabled = true)
-    public void spiceJetOriginCity() throws InterruptedException {
+    public void spiceJetOriginCity() {
         driver.get("https://www.spicejet.com/");
         //WebElement originCity = driver.findElement(By.xpath("//input[@id='ctl00_mainContent_ddl_originStation1_CTXT']"));
         WebElement originCity = driver.findElement(By.xpath("//*[@id='ctl00_mainContent_ddl_originStation1']"));

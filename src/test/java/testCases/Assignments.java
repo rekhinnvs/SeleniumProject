@@ -11,18 +11,17 @@ import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 public class Assignments extends Base{
 
-    static WebDriver driver;
+    WebDriver driver;
     WebDriverWait webDriverWait;
 
     @BeforeClass
     public void initDriver() {
         driver = initializeDriver();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        implicitWaitFor(3);
     }
 
     @Test(description = "Assignment 2",enabled = false)

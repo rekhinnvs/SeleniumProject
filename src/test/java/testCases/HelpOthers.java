@@ -67,4 +67,11 @@ public class HelpOthers extends Base {
         }
 
     }
+
+    @Test
+    public void cricBuzzTables() {
+        driver.get("https://www.cricbuzz.com/live-cricket-scorecard/27007/bcbxi-vs-zim-2-day-practice-match-zimbabwe-tour-of-bangladesh-2020");
+        WebElement table = driver.findElement(By.xpath("//div[@id='innings_1']/div[@class='cb-col cb-col-100 cb-ltst-wgt-hdr'][1]"));
+        int rowcount = table.findElements(By.cssSelector("div[class='cb-col cb-col-100 cb-scrd-itms']")).size();
+    }
 }
