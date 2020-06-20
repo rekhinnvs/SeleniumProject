@@ -51,6 +51,7 @@ public class Listeners extends Base implements ITestListener {
         ITestContext context = result.getTestContext();
         driver = (WebDriver) context.getAttribute("WebDriver");
         System.out.println(driver.getTitle());
+
         extentTest.get().fail(result.getThrowable());
         logger.info("Test case " + result.getName() + " failed");
         try {

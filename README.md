@@ -1,3 +1,6 @@
+This Project is to learn Web automation using Selenium webdriver with Java.
+
+
 ##### Different ways to locate element
     
     id

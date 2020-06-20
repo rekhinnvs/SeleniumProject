@@ -38,7 +38,6 @@ public class OtherWorks extends Base {
 
     @AfterClass
     public void tearDown() {
-        //base.flushHtmlReport();
         driver.quit();
     }
 

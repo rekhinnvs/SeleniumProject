@@ -12,6 +12,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -30,7 +31,9 @@ public class Base {
 
     public WebDriver initializeDriver() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions option = new ChromeOptions();
+        option.addArguments("--disable-notifications");
+        driver = new ChromeDriver(option);
         return driver;
     }
 
@@ -40,7 +43,6 @@ public class Base {
         capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-
         return driver;
     }
 
@@ -91,7 +93,6 @@ public class Base {
         extentReports.attachReporter(reporter);
         return extentReports;
     }
-
 
     public File takeScreenShots(WebDriver driver, String testName) throws IOException {
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
