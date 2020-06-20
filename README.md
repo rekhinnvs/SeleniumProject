@@ -15,5 +15,3 @@ This Project is to learn Web automation using Selenium webdriver with Java.
  Starting Selenium grid in hub mode
  
  ``java -jar selenium-server-standalone-<version>.jar -role hub``
- or
- ``java -jar selenium-server-standalone-<version>.jar hub``
