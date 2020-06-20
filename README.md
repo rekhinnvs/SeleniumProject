@@ -22,5 +22,3 @@ All the CSS selector details available at
  Starting Selenium grid in hub mode
  
  ``java -jar selenium-server-standalone-<version>.jar -role hub``
- or
- ``java -jar selenium-server-standalone-<version>.jar hub``
