@@ -1,10 +1,10 @@
 This Project is to learn Web automation using Selenium webdriver with Java.
 
-I am following below udemy course
+I am following the below udemy course
 
 ```https://www.udemy.com/course/selenium-real-time-examplesinterview-questions/```
 
-All the CSS selector details available at
+All the CSS selector details are available at
 
 ```http://pragmatictestlabs.com/2020/02/09/mastering-css-for-selenium-test-automation-2/```
 
