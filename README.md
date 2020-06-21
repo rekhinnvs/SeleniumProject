@@ -14,11 +14,11 @@ I am following the below udemy course
     CSS selector
     xpath
 
-All the CSS selector details are available at
+#####  All the CSS selector details are available at
 
 ```http://pragmatictestlabs.com/2020/02/09/mastering-css-for-selenium-test-automation-2/```
 
-Different ways of writing Xpath  
+##### Different ways of writing Xpath  
 * Single attribute `//input[@id='Email']`
 * Parent `//div[@class='form-group']//parent::div`
 * Ancestor `//div[@class='form-group']//ancestor::div`
