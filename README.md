@@ -1,9 +1,8 @@
 
 ## This Project is to learn Web automation using Selenium webdriver with Java.
 
-I am following the below udemy course
-
-```https://www.udemy.com/course/selenium-real-time-examplesinterview-questions/```
+The course I am following is 
+[Selenium WebDriver with Java -Basics to Advanced+Frameworks](https://www.udemy.com/course/selenium-real-time-examplesinterview-questions/)
 
 ##### Different ways to locate element
     
@@ -54,6 +53,6 @@ I am following the below udemy course
 //input[@type='submit' and @name='btnLogin']
  ```
  
- Starting Selenium grid in hub mode
+#### Starting Selenium grid in hub mode
  
   ```java -jar selenium-server-standalone-<version>.jar -role hub```
