@@ -13,9 +13,7 @@ The course I am following is
     CSS selector
     xpath
 
-#####  All the CSS selector details are available at
-
-```http://pragmatictestlabs.com/2020/02/09/mastering-css-for-selenium-test-automation-2/```
+#### All the CSS selector details are available [here](http://pragmatictestlabs.com/2020/02/09/mastering-css-for-selenium-test-automation-2/)
 
 ##### Different ways of writing Xpath  
 * Single attribute `//input[@id='Email']`
