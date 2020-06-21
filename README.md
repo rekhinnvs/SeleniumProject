@@ -1,10 +1,9 @@
 
 ## This Project is to learn Web automation using Selenium webdriver with Java.
 
-#### The course I am following is 
-[Selenium WebDriver with Java -Basics to Advanced+Frameworks](https://www.udemy.com/course/selenium-real-time-examplesinterview-questions/)
+#### The course I am following is [Selenium WebDriver with Java -Basics to Advanced+Frameworks](https://www.udemy.com/course/selenium-real-time-examplesinterview-questions/)
 
-##### Different ways to locate element
+##### Different ways to locate elements are
     
     id
     name
