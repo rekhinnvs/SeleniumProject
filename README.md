@@ -20,8 +20,8 @@ All the CSS selector details are available at
   
 1. Single attribute
 
-```diff 
-- //input[@id='Email']'
+```html 
+//input[@id='Email']'
 ```
 
 2. Parent
