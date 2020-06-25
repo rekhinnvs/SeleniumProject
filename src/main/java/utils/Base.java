@@ -96,7 +96,7 @@ public class Base {
 
     public File takeScreenShots(WebDriver driver, String testName) throws IOException {
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File outPutDirectory = new File("output");
+        File outPutDirectory = new File("./output");
         //Delete all the files in the directory before copying the new files.
         //FileUtils.cleanDirectory(outPutDirectory);
         File screenShotFile = new File(outPutDirectory.toString() + "/" + testName + ".png");
