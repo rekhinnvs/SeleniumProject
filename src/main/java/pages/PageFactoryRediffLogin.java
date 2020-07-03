@@ -17,6 +17,7 @@ public class PageFactoryRediffLogin {
     @FindBy(css = "input[value*='Sign']")
     WebElement signIn;
 
+    // Initialize the driver object.
     public PageFactoryRediffLogin(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
