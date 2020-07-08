@@ -170,7 +170,23 @@ public class Assignments extends Base{
             counter++;
             inputCountry.sendKeys(Keys.ARROW_DOWN);
             result = (String) javascriptExecutor.executeScript(script);
-        }while ((!result.startsWith("United States")) && counter<10);
+        } while ((!result.startsWith("United States")) && counter < 10);
 
+    }
+
+    @Test(description = "Get the number of checkboxes")
+    public void getNumberOfCheckBox() {
+        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+        WebElement firstCheckBox = driver.findElement(By.id("checkBoxOption1"));
+        firstCheckBox.click();
+        System.out.println("Is the checkbox selected " + firstCheckBox.isSelected());
+        //Check the first  Checkbox and verify if it its checked and Uncheck it again and verify its Unchecked
+        if (firstCheckBox.isSelected()) {
+            firstCheckBox.click();
+        }
+        System.out.println("Is the checkbox selected " + firstCheckBox.isSelected());
+        List<WebElement> checkBoxes;
+        checkBoxes = driver.findElements(By.cssSelector("input[type='checkbox']"));
+        System.out.println("Number of checkboxes " + checkBoxes.size());
     }
 }
