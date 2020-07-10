@@ -1,15 +1,15 @@
 package testCases;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WindowType;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -33,7 +33,7 @@ public class Selenium4 extends Base {
         System.out.println(driver.findElement(withTagName("label").above(nameEditBox)).getText());
     }
 
-    @Test(description = "Switch to a tab and get a value from it")
+    @Test(enabled = false, description = "Switch to a tab and get a value from it")
     public void newTab() {
         driver.get("https://rahulshettyacademy.com/angularpractice/");
         WebElement name = driver.findElement(By.name("name"));
@@ -48,6 +48,15 @@ public class Selenium4 extends Base {
         System.out.println(numberOfLinks);
         driver.switchTo().window(parentWindow);
         name.sendKeys("" + numberOfLinks);
+    }
+
+    @Test
+    public void getPartialScreenshot() throws IOException {
+        driver.get("https://rahulshettyacademy.com/angularpractice/");
+        WebElement name = driver.findElement(By.name("name"));
+        name.sendKeys("Rekhin");
+        File screenShot = name.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(screenShot, new File("./output/partial.png"));
     }
 
     @AfterClass
