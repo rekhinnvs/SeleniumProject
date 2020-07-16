@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
@@ -50,7 +51,7 @@ public class HelpOthers extends Base {
             System.out.println("Element found");
     }
 
-    @Test
+    @Test(enabled = false)
     public void clearTrip() throws InterruptedException {
         driver.get("https://www.cleartrip.com/");
         driver.findElement(By.id("FromTag")).sendKeys("del");
@@ -68,10 +69,22 @@ public class HelpOthers extends Base {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void cricBuzzTables() {
         driver.get("https://www.cricbuzz.com/live-cricket-scorecard/27007/bcbxi-vs-zim-2-day-practice-match-zimbabwe-tour-of-bangladesh-2020");
         WebElement table = driver.findElement(By.xpath("//div[@id='innings_1']/div[@class='cb-col cb-col-100 cb-ltst-wgt-hdr'][1]"));
         int rowcount = table.findElements(By.cssSelector("div[class='cb-col cb-col-100 cb-scrd-itms']")).size();
+    }
+
+    @Test
+    public void spiceJectCheckOriginCity() throws InterruptedException {
+        driver.get("https://www.spicejet.com/");
+        Thread.sleep(5000);
+        WebElement source = driver.findElement(By.xpath("//input[@id='ctl00_mainContent_ddl_originStation1_CTXT']"));
+        source.click();
+        driver.findElement(By.xpath("//a[@value='AMD']")).click();
+        System.out.println(source.getAttribute("value"));
+        Assert.assertTrue(source.getAttribute("value").contains("AMD"));
+        System.out.println("AMD Selected from drop down");
     }
 }
