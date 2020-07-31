@@ -1,0 +1,28 @@
+1. Difference between throw and throws.
+    Throw is a keyword which is used to throw an exception explicitly in the program inside a function or inside a block of code. 
+    Throws is a keyword used in the method signature used to declare an exception which might get thrown by the function while executing the code.
+    Only single exception is thrown by using throw.
+    Multiple exceptions can be thrown by using throws.
+
+2. What are the exceptions you have faced
+   (how can you resolve no such element exception)
+        (1) WebDriverException
+        (2) NoSuchElementException
+        (3) NoSuchFrameException
+        (4) NoAlertPresentException
+        (5) NoSuchWindowException
+        (6) ElementNotVisibleException
+        (7) ElementNotInterceptableException
+        (8) SessionNotCreatedException
+        (9) TimeOutException
+        (10) InvalidSelectorException
+        (11) IllegalStateException
+        (12) StaleElementReferenceException
+
+        1. NoSuchElementException occurs, when the locators (i.e. id / xpath/ css selectors etc) we mentioned in the code is unable to find the web element
+        on the web page.
+        2. There are two possibilities for getting this Exception, i.e. either we have provided a incorrect locator and trying to find the web element or we
+        have provided correct locator, but the web element related to the locator is not available on the web page.
+        3. We can handle this exception by wrapping fluent wait with  try-catch block
+
+3.
