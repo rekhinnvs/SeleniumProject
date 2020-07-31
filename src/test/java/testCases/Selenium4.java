@@ -37,6 +37,7 @@ public class Selenium4 extends Base {
     public void newTab() {
         driver.get("https://rahulshettyacademy.com/angularpractice/");
         WebElement name = driver.findElement(By.name("name"));
+        //This is to tell the driver that new windows is a tab.
         driver.switchTo().newWindow(WindowType.TAB);
         Set<String> windowHandles = driver.getWindowHandles();
         Iterator<String> iter = windowHandles.iterator();
