@@ -1,6 +1,7 @@
 package interviewPrep;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeClass;
@@ -28,7 +29,7 @@ public class Class_1 extends Base {
         properties.load(fis);
     }
 
-    @Test
+    @Test(enabled = false)
     public void findBrokenLinks() {
         String url = "";
         HttpURLConnection huc = null;
@@ -69,5 +70,23 @@ public class Class_1 extends Base {
             }
 
         }
+    }
+
+    @Test(enabled = true)
+    public void scrollDynamicPage() throws InterruptedException {
+        driver.get(properties.getProperty("rahulShetty"));
+        long lastHeight = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
+
+        while (true) {
+            ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            Thread.sleep(2000);
+
+            long newHeight = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
+            if (newHeight == lastHeight) {
+                break;
+            }
+            lastHeight = newHeight;
+        }
+
     }
 }

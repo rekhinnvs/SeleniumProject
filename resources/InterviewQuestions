@@ -131,3 +131,8 @@
         2. Iterate through the list and click on each link
         3. Find out whether the link is valid or broken based 404 error displayed on the screen ""
 
+14. Why did you choose selenium?
+        I chose selenium because its not browser dependent.
+        Supports many different languages and we can easily automate any web application using it.
+
+15. How can we scroll to end of an page in dynamically loading page?
