@@ -25,4 +25,109 @@
         have provided correct locator, but the web element related to the locator is not available on the web page.
         3. We can handle this exception by wrapping fluent wait with  try-catch block
 
-3.
+3. Explain about Page object model and advantages
+        Page object model:
+        Page Object Model in Selenium is a design pattern that is extensively used by the Selenium community for automation tests.
+        The basic design principle that the Page Object Model in Selenium follows is that a central object repository should be created for controls on a web page. Hence, each web page will be represented by a separate class.
+        Advantages:
+        • Better Maintenance – With separate page objects (or page classes) for different web pages,
+        functionality or web locator changes will have a less impact on the change in test scripts.
+        This makes the code cleaner and more maintainable as Selenium test automation implementation is spread across separate page classes.
+        • Minimal Changes Due to UI Updates – The effect of changes in the web locators will only be limited to the page classes,
+        created for automated browser testing of those web pages. This reduces the overall effort spent in changing test scripts due to frequent UI updates.
+        • Reusability – The page object methods defined in different page classes can be reused across Selenium test automation scripts.
+        This, in turn, results in a reduction of code size as there is the increased usage of reusability.
+
+4. Explain your framework
+        1. Language used: Java
+        2. Type of Framework: Behavioral-driven Framework by using Page Object Model design pattern with page factory
+        3. POM: As per pom, we have maintained a class for every web page. Each webpage has a seperate class for functionality and members of that webpage. Seperate classes for every individual test.
+        4. Packages: We have separate packages for test case, test data, utilities
+        5. Test Base class: It will deal with all the common functions used by all the pages. This class is responsible for loading the configurations from properties file,
+        initializing the Webdriver, Implicit waits, Extent Reports and also to create the object of FileInputStream which is responsible for pointing towards the file from which the data should be read.
+        6. Utility class: It stores and handles the the functions which are repetitive (Waits, actions, capturing screenshots,accessing excels, Sending mails etc).This class extends the Test Base class to inherit the properties.
+        7. Properties file: The file (config.properties) stores the info that remains static throughout the framework such as browser specific info, application URL, screenshots path etc.
+        8. Screenshots: Screenshots will be captured and stored in a seperate folder and the screenshots of a failed test cases will be added in the extent reports
+        9. Test-Data: All the historical test data will be kept in excel sheet. by using excel, we pass test data and handle data driven testing. we use Apache POI to handle excel sheets
+        10. TestNG: Using TestNG for Assertions, Grouping and parallel execution
+        11. BDD framework: we used BDD approach which is in simple text language such that everyone can able to understand what is going on in the project.
+        12. Maven: Using Maven for build, execution, and dependancy purpose. Integrating the TestNG dependency in POM.xml file and running this POM.xml file using jenkins
+        13. Version Control Tool: We use git and github as a repository to store and maintain our test scripts
+        14. Jenkins: By using Jenkins CI (Continuous integration) Tool, we execute test cases on daily basis and for nightly execution based on the schedule. Test Results will be sent to the peers using Jenkins.
+        15. Extent Reports: For the reporting purpose, We are using Extent Reports. It generates beautiful HTML reports. We use extent Reports for maintaining logs and to include the screenshots of failed test cases in the Extent Report.
+
+5. Have you used POM in your framework?
+       yes -As per the Page Object Model, we have maintained a class for every web page.
+       Each web page has a separate class and that class holds the functionality and members of that web page.
+       Separate classes for every individual test.
+
+6. Have you used interface in your framework other then selenium interfaces?
+        We have used TestNG listeners in selenium to generate logs or customize the testng reports.
+        We have implemented ITestListener interface which have below methods
+        OnStart
+        onTestSuccess
+        onTestFailure
+        onTestSkipped
+        onTestFailedButWithinSuccessPercentage
+        onFinish
+
+7.  What are the selenium interfaces
+        Webdriver itself is an interface.
+        Alert.
+        Capabilities.
+        ContextAware.
+        HasCapabilities.
+        JavascriptExecutor.
+        OutputType.
+        Rotatable.
+        SearchContext.
+
+8. How u will handle popup window ?other then get window handle
+        Pop-up window can be handled using the java based utility Robot which is used to control keyboard and mouse actions.
+
+        Common use-cases using Robot class:
+        Create object for robot class
+        Robot robot = new Robot();
+
+        1) To press down arrow of keyboard we use
+           robot.KeyPress(KeyEvent.VK_DOWN)
+        2) To press TAB key of Keyboard we use
+           robot.KeyPress(KeyEvent.VK_TAB)
+        3) To press ENTER key of keyboard we use
+           robot.KeyPress(KeyEvent.VK_ENTER)
+
+9. Exceptions in Selenium?
+        (1) WebDriverException
+        (2) NoSuchElementException
+        (3) NoSuchFrameException
+        (4) NoAlertPresentException
+        (5) NoSuchWindowException
+        (6) ElementNotVisibleException
+        (7) ElementNotInterceptableException
+        (8) SessionNotCreatedException
+        (9) TimeOutException
+        (10) InvalidSelectorException
+        (11) IllegalStateException
+        (12) StaleElementReferenceException etc...
+
+10. Suppose u have class and abstract class, in class there is a user defined constructor and main method which one will get execute first?
+       The main method will always be executed first, because it is a special static method that will be called from Java itself to start an application
+
+11.  Primitives and Non Primitives data types in java? String is primitive or non primitive
+        1. Primitive data types: byte, short, int, long, float, double, boolean, char ;
+        Non-primitive data types: String, Array, Interface, Class
+        2. Primitive data types: Java predefined
+        Non-primitive data types: Declared by the user
+
+        String is non primitive as it is a class. Class comes under non primitive category.
+
+12. What is the use of testNG file?
+        TestNG. xml file is a configuration file that helps in organizing our tests. It allows testers to create and handle multiple test classes,
+        define test suites and tests.
+        It makes a tester's job easier by controlling the execution of tests by putting all the test cases together and run it under one XML file.
+
+13. Ways to find broken links in selenium (except using HTTPURL Connection)
+        1. Collect all the links using list in the web page based on <a> tag.
+        2. Iterate through the list and click on each link
+        3. Find out whether the link is valid or broken based 404 error displayed on the screen ""
+
