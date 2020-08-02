@@ -72,7 +72,7 @@ public class Class_1 extends Base {
         }
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void scrollDynamicPage() throws InterruptedException {
         driver.get(properties.getProperty("rahulShetty"));
         long lastHeight = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
@@ -88,5 +88,11 @@ public class Class_1 extends Base {
             lastHeight = newHeight;
         }
 
+    }
+
+    @Test
+    public void findLength() {
+        String string = "Rekhin hello";
+        System.out.println(string.lastIndexOf(""));
     }
 }

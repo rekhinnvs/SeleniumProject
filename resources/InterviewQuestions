@@ -135,4 +135,105 @@
         I chose selenium because its not browser dependent.
         Supports many different languages and we can easily automate any web application using it.
 
-15. How can we scroll to end of an page in dynamically loading page?
+15. How can we scroll to end of an page in dynamically loading page? [Answer is present in class_1.java]
+
+16. What is xpath?Type of X path.Explain each type
+        Xpath stands for XML path which consists of expression for a path along with certain conditions to locate a particular element.
+        There are two types of XPath
+        1. Absolute Xpath - XPath expression is created using the selection from the root node.
+        It starts with a single slash ‘/’ and traverses from the root to the whole DOM to reach to the desired element.
+        2. Relative XPath - XPath expression is created from the middle of the DOM structure.
+        It is represented by a double slash ‘//’ denoting the current node.""
+
+17. How do you perform parallel testing in Selenium?
+        We use parallel attribute in testng.xml to acheive parallel testing in TestNG.
+        It also has a parameter called as thread-count. The parallel can have the following values.
+        (1) Tests
+        (2) Classes
+        (3) Methods
+        (4) Instances
+
+        Ex:
+        <suite name = ""Deepthi"" parallel=""tests"" thread-count=""5"">
+        <test name=""Banking"">
+        <classes>
+         <class name =""test.day1""/>
+        </classes>
+        </test>
+        </suite>
+
+        In above example, execution will happen in parallel mode for tests having thread-count of 5
+
+18. Can you describe scrum ceremony?
+        "Scrum ceremonies are meetings that are unique to scrum teams.
+        Scrum ceremonies ensure that everyone (the scrum master, product owner and development team, testing team ) is in-sync.
+        These ceremonies are held at key instances in a sprint.
+
+        1. Sprint backlog refinement
+        2. Sprint planning meeting
+        3. Daily standup meeting
+        4. Sprint review meeting
+        5. Sprint retrospective meeting at end of sprint"
+
+19. OOPS concepts
+
+20. Method overloading and overriding.
+
+21. Difference between constructor and interface.
+
+22. In a web page there are several Pop-up, but we don't when the pop-up will appear,
+    in this case how we will handle the Pop-up using Selenium WebDriver (Java)
+          S1 - If in case suppose the pop up appears before the start of the test or end of the test we can use Test Listeners.
+          S2 - But in case if it can appear anytime during execution,
+          after each step there should be a validation to check for multiple handles and handle them accordingly (Not a ideal solution)
+
+23. Explain Set and Map in Java
+        Set:
+        1. Set is an interface.Cannot be instantiated to a concrete implementation in order to use it.
+        You can choose between the following Set implementations in the Java Collections API:
+        java.util.EnumSet
+        java.util.HashSet
+        java.util.LinkedHashSet
+        java.util.TreeSet
+        2. Cannot contain duplicate elements.
+        3. Accessing and adding order of each type of Set type is different
+
+        Map:
+        1. Map is a collection of key = value pair.
+        2. A map does not contain duplicate keys.
+        Below are the main implementations of Map interfaces
+        1. HashMap
+        2. LinkedHashedMap
+        3. TreeMap""
+
+24. Explain how BDD works with  Cucumber.
+        BDD is Behavior Driven Development, which is derived from TDD (Test Driven Development).
+        Here the tests are written first and then the application code is written later.
+        As the application code adds on the tests pass and thus the motive is achieved.
+        Cucumber is a testing framework which supports Behavior Driven Development
+
+25. How will you handle dependencies in Maven at run time.
+        Runtime
+        This scope indicates that the dependency is not required for compilation, but is for execution.
+        Maven includes a dependency with this scope in the runtime and test classpaths, but not the compile classpath.
+
+26. What is hooks and explain hooks.
+        Hooks are like annotations. @Before, @After, @BeforeStep , @AfterStep
+
+27. How will u run the method again and again in testng?
+        we can use invocationCount helper attribute.
+        This is a TestNG attribute that defines number of times a test method should be invoked or executed before executing any other test method.
+        If invocationCount = 5, then the test method will be executed 5 times before executing next test method.
+        or we can use data provider.
+
+28. How to run the test method in order
+        Using priority near ever @Test method starting from 0 to later. 0 being highest.
+        and in xml tag we use <suite name=""suite1"">
+            <test name=""test"" preserve-order=""true"">
+
+29. What is the difference between build and perform?
+        build() method is used to create chain of action or operation you want to perform.
+        perform() this method is used to execute chain of action which are build using Action build method.
+        build().perform() = create chain of actions + execute
+
+30.
