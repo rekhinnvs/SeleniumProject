@@ -90,9 +90,46 @@ public class Class_1 extends Base {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void findLength() {
         String string = "Rekhin hello";
         System.out.println(string.lastIndexOf(""));
+    }
+
+    @Test
+    public void flipKartSort() throws InterruptedException {
+        /*Using Selenium, load the flipkart.com desktop home page.
+        Search for the product "Samsung Galaxy S10" on that page.
+                On the search results click on "Mobiles" in categories.
+        Apply the following filters (in filters section on the left hand side):
+        Brand: Samsung, Select Flipkart assured,Sort the entries with Price -> High to Low.
+        Read the set of results that show up on page 1.
+        Create a list with the following parameters, and print this on the console.
+        Product Name, Display Price, Link to Product Details Page*/
+
+        driver.get(properties.getProperty("flipkart"));
+        WebElement closeLoginBanner = driver.findElement(By.className("_3Njdz7"));
+        if (closeLoginBanner.isDisplayed()) {
+            System.out.println("Banner is displayed");
+            driver.findElement(By.xpath("//div[@class='_3Njdz7']/button")).click();
+        }
+        driver.findElement(By.xpath("//input[@class='LM6RPg']")).sendKeys("Samsung");
+        driver.findElement(By.className("vh79eN")).click();
+        driver.findElement(By.xpath("//div[contains(text(),'High to Low')]")).click();
+        List<WebElement> searchResults = driver.findElements(By.cssSelector("._3O0U0u"));
+        System.out.println("Number of result " + searchResults.size());
+        Thread.sleep(2000);
+        for (WebElement element : searchResults) {
+            System.out.println("_______________________________________");
+            WebElement productName = element.findElement(By.cssSelector("._3wU53n"));
+            System.out.println("Product name : " + productName.getText());
+
+            WebElement displayPrice = element.findElement(By.cssSelector("._1vC4OE._2rQ-NK"));
+            System.out.println("Display price : " + displayPrice.getText());
+
+            WebElement links = element.findElement(By.cssSelector("._31qSD5"));
+            System.out.println("Link : " + links.getAttribute("href"));
+            System.out.println("_________________________________________");
+        }
     }
 }
