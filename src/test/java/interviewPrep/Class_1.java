@@ -1,18 +1,26 @@
 package interviewPrep;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Base;
 
+import java.io.File;
+import java.net.URL;
+
+import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
@@ -96,7 +104,7 @@ public class Class_1 extends Base {
         System.out.println(string.lastIndexOf(""));
     }
 
-    @Test
+    @Test(enabled = false)
     public void flipKartSort() throws InterruptedException {
         /*Using Selenium, load the flipkart.com desktop home page.
         Search for the product "Samsung Galaxy S10" on that page.
@@ -113,6 +121,7 @@ public class Class_1 extends Base {
             System.out.println("Banner is displayed");
             driver.findElement(By.xpath("//div[@class='_3Njdz7']/button")).click();
         }
+
         driver.findElement(By.xpath("//input[@class='LM6RPg']")).sendKeys("Samsung");
         driver.findElement(By.className("vh79eN")).click();
         driver.findElement(By.xpath("//div[contains(text(),'High to Low')]")).click();
@@ -131,5 +140,71 @@ public class Class_1 extends Base {
             System.out.println("Link : " + links.getAttribute("href"));
             System.out.println("_________________________________________");
         }
+    }
+
+    @Test(enabled = false)
+    public void sportsAda() {
+        /*visit: https://www.sportsadda.com/
+        Click on got it/Cookies button(visible at the bottom of the page that accepts cookies)
+        One Ad pops up which needs to be closed by automation
+        I tried with Selenium but have no clue how to close it
+        Move ahead without login.
+        RHS Scores widget: Click on very first match scorecard
+        Click on Match info tab*/
+        driver.get(properties.getProperty("sportsadda"));
+        driver.manage().window().maximize();
+        WebElement cookies = driver.findElement(By.id("cookiebtn"));
+        if (cookies.isDisplayed()) cookies.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebElement adBanner = driver.findElement(By.cssSelector(".close-section"));
+        wait.until(ExpectedConditions.elementToBeClickable(adBanner));
+        adBanner.click();
+
+        WebElement scoreCard = driver.findElement(By.xpath("//div[contains(@class,'swiper-slide-active')]"));
+        WebElement container = driver.findElement(By.xpath("//div[@class='swiper-wrapper']//child::div[1]"));
+        //div[@class='form-group']//child::input[1]
+
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", container);
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(container).perform();
+    }
+
+    @Test
+    public void getAllLinks() throws IOException {
+        driver.get("https://www.conestogac.on.ca/");
+        List<WebElement> links = driver.findElements(By.tagName("a"));
+
+        Iterator<WebElement> it = links.iterator();
+        String url = "";
+        /*while(it.hasNext()) {
+
+            url = it.next().getAttribute("href");
+
+            System.out.println(url);
+
+            if (url == null || url.isEmpty()) {
+                System.out.println("URL is empty ");
+                continue;
+            }
+        }*/
+
+        for (WebElement element : links) {
+            url = element.getAttribute("href");
+            if (url == null || url.isEmpty()) {
+                //System.out.println(element.getAttribute(""));
+                System.out.println(element.getAttribute("innerHTML"));
+                System.out.println("URL is empty " + element.getText());
+                continue;
+            }
+        }
+
+    }
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
     }
 }

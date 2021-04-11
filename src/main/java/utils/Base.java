@@ -94,15 +94,16 @@ public class Base {
         return extentReports;
     }
 
-    public File takeScreenShots(WebDriver driver, String testName) throws IOException {
+   public File takeScreenShots(WebDriver driver, String testName) throws IOException {
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File outPutDirectory = new File("./output");
+        File screenShotFile = new File(outPutDirectory+testName);
         //Delete all the files in the directory before copying the new files.
         //FileUtils.cleanDirectory(outPutDirectory);
-        File screenShotFile = new File(outPutDirectory.toString() + "/" + testName + ".png");
         FileUtils.copyFile(file, screenShotFile);
         System.out.println("absolute path of the screenshot " + screenShotFile.getAbsolutePath());
         return screenShotFile;
     }
+
 
 }
